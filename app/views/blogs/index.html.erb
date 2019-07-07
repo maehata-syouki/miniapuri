@@ -1,0 +1,18 @@
+<div class="contents row">
+  <div class="more">
+    <% @blogs.each do |blog| %>
+      <% if user_signed_in? && current_user.id == blog.user_id %>
+        <ul class="more_list">
+          <%# <%= link_to '詳細', blog_path(blog.id), method: :get %> 
+        <li>
+          <%= link_to '編集', "/blogs/#{blog.id}/edit", method: :get %>
+        </li>
+        <li>
+          <%= link_to '削除', "/blogs/#{blog.id}", method: :delete %>
+        </li>
+      <% end %>
+      <%= simple_format(blog.text) %>
+          <span>投稿者</span><%= blog.user.nickname %>
+    <% end %>
+  </div>
+</div>
